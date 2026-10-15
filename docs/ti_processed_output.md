@@ -1,8 +1,10 @@
 # Processed TI UART output
 
 This milestone emulates **processed TI UART output**, not raw radar/ADC data.
-It adds no COM ports, configuration/CLI UART, GUI changes, ADC, chirps, FFT,
-CFAR, LVDS, or DCA1000 emulation. JSON/UDP/backend output remains available.
+This capture/encoder milestone adds no COM ports. The subsequent
+[UART bridge mode](ti_uart_bridge.md) adds CLI and paced DATA transports.
+Neither mode emulates ADC, chirps, FFT, CFAR, LVDS, or DCA1000.
+JSON/UDP/backend output remains available.
 
 ```text
 Simulator or recorded common RadarFrame
@@ -174,13 +176,14 @@ while format evidence can exceed our own round trips. Current classification:
 | synthetic_only | TRUE (data origin) | All inputs are synthetic; no hardware measurements |
 | published_spec_verified | TRUE | Published frame/TLV layouts reviewed with firmware/parser corrections |
 | ti_reference_parser_verified | TRUE | Local unmodified parser accepts generated packets, including all four TLVs |
+| applications_visualizer_verified | **FALSE** | UART bridge awaits a manual TI GUI session |
 | hardware_capture_verified | **FALSE** | No real IWR6843 UART capture has been compared |
 
 The strongest achieved format-validation tier is ti_reference_parser_verified.
 This does not establish visualizer session operation, real tracking performance,
-hardware SNR/confidence calibration, or real-device timing. Before virtual UART:
-add paced output/backpressure and validate a complete visualizer data session,
-including whatever separate config handshake that milestone requires. Before
+hardware SNR/confidence calibration, or real-device timing. The UART bridge now
+provides paced output/backpressure and a source-inspected CLI handshake; a
+complete visualizer data session still requires the manual test. Before
 hardware: capture the exact board/firmware stream, compare it byte-for-byte at
 the schema level, establish mounting/calibration, clock/reset and packet-loss
 behavior, and validate genuine associations/heights/SNR/confidence meanings.

@@ -1,5 +1,10 @@
 # RF target simulator
 
+The additional [TI UART bridge mode](docs/ti_uart_bridge.md) provides a minimal
+CLI emulator and paced processed DATA output for a manual Applications Visualizer
+test through two user-created virtual serial pairs. It installs no COM driver.
+Applications Visualizer and hardware verification remain **FALSE**.
+
 A native Windows 11 / Python 3.13 senior-design tool for developing system software
 before a TI mmWave board is integrated. It simulates **target-level output** after
 onboard processing, not radio waves or raw radar samples. A local UDP/SQLite/HTTP

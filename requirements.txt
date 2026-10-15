@@ -2,3 +2,4 @@ numpy>=2.1
 pygame==2.6.1
 pydantic>=2,<3
 PyYAML>=6
+pyserial>=3.5,<4
