@@ -32,14 +32,14 @@ class TITarget(RadarValue):
 
 
 class TIHeader(RadarValue):
-    version: int = Field(ge=0)
+    version: int = Field(ge=0, le=2**32 - 1)
     totalPacketLen: int = Field(ge=40)
-    platform: int = Field(ge=0)
-    frameNumber: int = Field(ge=0)
-    timeCPUCycles: int = Field(ge=0)
-    numDetectedObj: int = Field(ge=0)
-    numTLVs: int = Field(ge=0)
-    subFrameNumber: int = Field(ge=0)
+    platform: int = Field(ge=0, le=2**32 - 1)
+    frameNumber: int = Field(ge=0, le=2**32 - 1)
+    timeCPUCycles: int = Field(ge=0, le=2**32 - 1)
+    numDetectedObj: int = Field(ge=0, le=2**32 - 1)
+    numTLVs: int = Field(ge=0, le=2**32 - 1)
+    subFrameNumber: int = Field(ge=0, le=2**32 - 1)
 
 
 class TIPacket(RadarValue):

@@ -513,6 +513,18 @@ are synthetic software-testing parameters. The goal is to develop system softwar
 before hardware integration, not to predict radar performance.
 # IWR6843ISK-ODS compatibility
 
+Processed TI UART encoding and binary captures are now available as an additional
+output tool. See [the encoder developer guide](docs/ti_processed_output.md) for
+format, quantization, association timing, reference validation, and limitations.
+
+```powershell
+.\.venv\Scripts\python.exe -m rf_sim.ti_capture recordings/synthetic_ti_uart.bin --frames 100
+.\.venv\Scripts\python.exe -B tools/validate_ti_reference.py recordings/synthetic_ti_uart.bin
+```
+
+No virtual COM/config UART is implemented. This is processed-output emulation;
+hardware-capture verification remains false.
+
 The default world contains two RC cars. Ground truth (`Vehicle`/`CarState`),
 spherical radar detections (`RadarPoint`), normalized floor tracks (`Detection`),
 and JSON/TI binary encoding are separate representations. Point and track counts
@@ -583,6 +595,6 @@ range/SNR, and uint32 height IDs where the HTML descriptions differ.
 
 The existing JSON schema accepts additive frame details and older recordings;
 external strict consumers must accept the new optional fields. Live serial port
-configuration, incremental UART synchronization, installation calibration and
+configuration, installation calibration and
 validation against captured hardware packets remain future integration work.
 

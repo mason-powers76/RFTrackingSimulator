@@ -171,6 +171,11 @@ class SimulatedRadarSource:
             detections=self.sensor.detect_points(vehicles),
             source_metadata={
                 "point_coordinates": "sensor_X_downY_Z",
+                "sensor_pose": {
+                    "x_m": self.sensor.config.sensor_x_m,
+                    "y_m": self.sensor.config.sensor_y_m,
+                    "height_m": self.sensor.config.sensor_height_m,
+                },
                 "track_coordinates": "room_floor_xy",
                 "track_range": (
                     "legacy_horizontal" if self.sensor.config.legacy_horizontal_range else "slant"
